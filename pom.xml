@@ -6,4 +6,7 @@
   <packaging>pom</packaging>
   <name>Jee E-commerce </name>
   <description>Yet Another E-commerce plateform	</description>
+  <modules>
+  	<module>catalogue</module>
+  </modules>
 </project>
