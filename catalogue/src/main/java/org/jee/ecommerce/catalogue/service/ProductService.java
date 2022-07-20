@@ -21,11 +21,23 @@ public class ProductService {
 
 	public ProductDto doCreateProduct(ProductDto productDto) throws Exception {
 		// mapper
-		Product product = mapper.readValue(mapper.writeValueAsString(productDto), Product.class); // dto -- model
+		Product product = mapper.readValue(mapper.writeValueAsString(productDto), Product.class); // dto --> model
 		product = productRepository.save(product);
-		return mapper.readValue(mapper.writeValueAsString(product), ProductDto.class); // model - dto
+		return mapper.readValue(mapper.writeValueAsString(product), ProductDto.class); // model ---> dto
 	}
 	
+	public ProductDto doUpdateProduct(ProductDto productDto) throws Exception {
+		Product product = productRepository.findByReference(productDto.getReference());
+		// On créé un nouvel objet pour remapper, a priori on peut écrire directement une requête SQL de MAJ dans le repository et passer le DTO
+		Product productToSave = mapper.readValue(mapper.writeValueAsString(productDto), Product.class);
+		productToSave.setId(product.getId());
+		product = productRepository.save(product);
+		return mapper.readValue(mapper.writeValueAsString(product), ProductDto.class); // model ---> dto
+	}
+	
+	public void doDeleteProduct(String reference) throws Exception {
+		productRepository.deleteByReference(reference);
+	}
 	
 	
 }

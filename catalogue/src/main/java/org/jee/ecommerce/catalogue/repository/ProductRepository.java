@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-}
+	Product findByReference(String reference); // Pas besoin d'implémenter le script le typage se fait par le nom du suffixe après findBy
+	
+	void deleteByReference(String reference);
+} 
