@@ -7,6 +7,7 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,6 +19,7 @@ public class Product implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(generator = "mySeqGen")
 	private long id;
@@ -27,6 +29,10 @@ public class Product implements Serializable {
 	private String name;
 	private String description;
 	private String price;
+	
+	@ManyToOne
+	private Category defaultCategory;
+	
 	private boolean active;
 	private Date createdAt;
 	private Date updatedAt;
@@ -77,6 +83,14 @@ public class Product implements Serializable {
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+	
+	public Category getDefaultCategory() {
+		return defaultCategory;
+	}
+
+	public void setDefaultCategory(Category category) {
+		this.defaultCategory = category;
 	}
 
 	public boolean isActive() {

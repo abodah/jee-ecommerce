@@ -1,29 +1,18 @@
-package org.jee.ecommerce.catalogue.entity;
+package org.jee.ecommerce.catalogue.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@Entity
-@Table(name = "jee_catalog_category")
-@SequenceGenerator(name = "categorySeq", sequenceName = "categorySeq", initialValue = 1, allocationSize = 100)
-public class Category implements Serializable {
-
+@JsonInclude(value = Include.NON_NULL)
+public class CategoryDto implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(generator = "mySeqGen")
 	private long id;
-	
 	private String name;
 	private String description;
 	private boolean active;
@@ -37,7 +26,8 @@ public class Category implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
+
 	public String getName() {
 		return name;
 	}
@@ -53,7 +43,7 @@ public class Category implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public boolean isActive() {
 		return active;
 	}
@@ -61,7 +51,7 @@ public class Category implements Serializable {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -76,23 +66,6 @@ public class Category implements Serializable {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Category other = (Category) obj;
-		return id == other.id;
 	}
 
 }
