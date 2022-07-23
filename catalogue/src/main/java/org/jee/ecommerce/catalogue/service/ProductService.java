@@ -1,5 +1,8 @@
 package org.jee.ecommerce.catalogue.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.jee.ecommerce.catalogue.entity.Product;
 import org.jee.ecommerce.catalogue.model.ProductDto;
 import org.jee.ecommerce.catalogue.repository.ProductRepository;
@@ -37,6 +40,11 @@ public class ProductService {
 	
 	public void doDeleteProduct(String reference) throws Exception {
 		productRepository.deleteByReference(reference);
+	}
+
+	public ArrayList<ProductDto> doListProduct() {
+		// TODO Auto-generated method stub
+		return new ArrayList<>();
 	}
 	
 	

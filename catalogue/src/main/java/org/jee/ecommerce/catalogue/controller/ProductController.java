@@ -1,10 +1,13 @@
 package org.jee.ecommerce.catalogue.controller;
 
+import java.util.List;
+
 import javax.websocket.server.PathParam;
 
 import org.jee.ecommerce.catalogue.model.ProductDto;
 import org.jee.ecommerce.catalogue.service.ProductService;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +28,11 @@ public class ProductController {
 	@PostMapping()
 	public ProductDto doCreateProduct(@RequestBody ProductDto product) throws Exception {
 		return productService.doCreateProduct(product);
+	}
+	
+	@GetMapping("list")
+	public List<?> doListProduct() throws Exception {
+		return productService.doListProduct();
 	}
 	
 	@PutMapping()
