@@ -18,6 +18,9 @@ public class ProductDto implements Serializable {
 	private String description;
 	private String price;
 	private boolean active;
+	
+	private CategoryDto defaultCategory;
+	
 	private Date createdAt;
 	private Date updatedAt;
 
@@ -85,4 +88,11 @@ public class ProductDto implements Serializable {
 		this.updatedAt = updatedAt;
 	}
 
+	public CategoryDto getDefaultCategory() {
+		return defaultCategory;
+	}
+
+	public void setDefaultCategory(CategoryDto defaultCategory) {
+		this.defaultCategory = defaultCategory;
+	}
 }

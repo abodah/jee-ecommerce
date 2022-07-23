@@ -6,6 +6,7 @@ import javax.websocket.server.PathParam;
 
 import org.jee.ecommerce.catalogue.model.ProductDto;
 import org.jee.ecommerce.catalogue.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 
 	private final ProductService productService;
@@ -26,12 +27,18 @@ public class ProductController {
 	}
 
 	@PostMapping()
-	public ProductDto doCreateProduct(@RequestBody ProductDto product) throws Exception {
-		return productService.doCreateProduct(product);
+	public ResponseEntity<?> doCreateProduct(@RequestBody ProductDto product)  {
+		try {
+			ProductDto productDto =  productService.doCreateProduct(product);
+			return ResponseEntity.ok(product);
+		} catch (Exception ex) {
+			// TODO Auto-generated catch block
+			return ResponseEntity.ok(ex.getMessage());
+		}
 	}
 	
-	@GetMapping("list")
-	public List<?> doListProduct() throws Exception {
+	@GetMapping()
+	public List<ProductDto> doListProduct() throws Exception {
 		return productService.doListProduct();
 	}
 	

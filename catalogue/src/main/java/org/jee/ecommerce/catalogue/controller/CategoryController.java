@@ -1,10 +1,14 @@
 package org.jee.ecommerce.catalogue.controller;
 
+import java.util.List;
+
 import javax.websocket.server.PathParam;
 
 import org.jee.ecommerce.catalogue.model.CategoryDto;
+import org.jee.ecommerce.catalogue.model.ProductDto;
 import org.jee.ecommerce.catalogue.service.CategoryService;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
 
 	private final CategoryService CategoryService;
@@ -20,6 +24,12 @@ public class CategoryController {
 	public CategoryController(CategoryService CategoryService) {
 		super();
 		this.CategoryService = CategoryService;
+	}
+	
+
+	@GetMapping()
+	public List<CategoryDto> doListCategory() throws Exception {
+		return CategoryService.doListCategory();
 	}
 
 	@PostMapping()
