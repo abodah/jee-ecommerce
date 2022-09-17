@@ -1,0 +1,2532 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the documentation of Microfi Gateway API used to help frontend developers for integration.",
+    "version": "1.0.0",
+    "title": "Microfi Gateway API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "stephane.fedim@pkf-researchcenter.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "192.168.202.86",
+  "tags": [
+    {
+      "name": "authentication",
+      "description": "Public authentication endpoinds for Customer"
+    },
+    {
+      "name": "agent",
+      "description": "Agent endpoints"
+    },
+    {
+      "name": "notification",
+      "description": "Notification endpoints"
+    },
+    {
+      "name": "demandeCheque",
+      "description": "Demande cheque endpoints"
+    },
+    {
+      "name": "beneficiary",
+      "description": "Beneciary endpoints"
+    },
+    {
+      "name": "customer",
+      "description": "Customer endpoints"
+    },
+    {
+      "name": "localization",
+      "description": "Localization endpoints"
+    },
+    {
+      "name": "otp",
+      "description": "OTP managment endpoints"
+    },
+    {
+      "name": "others",
+      "description": "Other endpoints"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "security": [
+    {
+      "JWT": []
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Login a customer",
+        "description": "",
+        "operationId": "login",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "LoginDTO object that needs to be logged",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged"
+          }
+        },
+        "security": []
+      }
+    },
+    "/firstLogin": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "First login of the user",
+        "description": "",
+        "operationId": "firstLogin",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "LoginDTO object that needs to be logged for the first time",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged"
+          }
+        },
+        "security": []
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Register a customer",
+        "description": "",
+        "operationId": "register",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "registerDTO object that needs to registered",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RegisterDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User registered"
+          }
+        },
+        "security": []
+      }
+    },
+    "/update": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Update PIN",
+        "description": "",
+        "operationId": "update",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "updateDTO object that needs to updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePINDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PIN updated"
+          }
+        },
+        "security": []
+      }
+    },
+    "/{phoneNumber}/activate": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Activate a customer with his phone number",
+        "description": "",
+        "operationId": "activate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "phoneNumber",
+            "in": "path",
+            "description": "Phone number of user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User activated",
+            "schema": {
+              "$ref": "#/definitions/ApiResponseDTO"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/{phoneNumber}/toggle": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Toggle status of a customer",
+        "description": "",
+        "operationId": "toggle",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "phoneNumber",
+            "in": "path",
+            "description": "Phone number of user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User activated",
+            "schema": {
+              "$ref": "#/definitions/ApiResponseDTO"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/newDevice": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Add new device to user",
+        "description": "",
+        "operationId": "newDevice",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "newDeviceDTO object that needs to added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewDeviceDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added"
+          }
+        },
+        "security": []
+      }
+    },
+    "/agent/login": {
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Login an agent",
+        "description": "",
+        "operationId": "loginAgent",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "loginAgentDTO object that needs to be logged",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginAgentDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent logged"
+          }
+        },
+        "security": []
+      }
+    },
+    "/agent/register": {
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Register an agent",
+        "description": "",
+        "operationId": "registerAgent",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "registerAgentDTO object that needs to be registered",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RegisterAgentDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent registered"
+          }
+        },
+        "security": []
+      }
+    },
+    "/agent/initTransaction": {
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Initialize a new transaction",
+        "description": "",
+        "operationId": "agentInitTransaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "registerAgentDTO object that needs to be registered",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransactionDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction initialized",
+            "schema": {
+              "$ref": "#/definitions/TransactionDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/agent/validateTransaction/{agentCode}": {
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Validate initialized transaction",
+        "description": "",
+        "operationId": "agentValidateTransaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentCode",
+            "description": "Code of agent",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction validated"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/agent/getTransactionDetail/{transactionCode}": {
+      "get": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Return detail of a transaction",
+        "description": "",
+        "operationId": "agentGetTransDetail",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transactionCode",
+            "description": "Code of the transaction",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DigibankTransactionDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/agent/getTransactionList/{agentCode}": {
+      "get": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Get all transaction of an agent",
+        "description": "",
+        "operationId": "agentTransactionList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "agentCode",
+            "description": "Code of agent",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All agent's transactions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/agent/getAccountStatement/{accountNumber}/{startDate}/{endDate}/{startIndex}/{numberOfLines}": {
+      "get": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Returne statement of an account between a specific period of time",
+        "description": "",
+        "operationId": "agentAccountStatement",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountNumber",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "startIndex",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "path",
+            "name": "numberOfLines",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account statement",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StatementDTO"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/agent/history/{accountNumber}/{numberOfTransaction}": {
+      "get": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "History of an account",
+        "description": "",
+        "operationId": "agentHistory",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountNumber",
+            "description": "Code of agent",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "numberOfTransaction",
+            "description": "Code of agent",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account history",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/HistoricDTO"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/notification": {
+      "post": {
+        "tags": [
+          "notification"
+        ],
+        "operationId": "createNotification",
+        "summary": "Create notification",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NotificationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "notification"
+        ],
+        "operationId": "getNotification",
+        "summary": "List notifications",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NotificationDTO"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "notification"
+        ],
+        "operationId": "updateNotification",
+        "summary": "Update notification",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NotificationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/NotificationDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/notification/{code}": {
+      "get": {
+        "tags": [
+          "notification"
+        ],
+        "operationId": "getNotificationByCode",
+        "summary": "Return notification by code",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "description": "Notification code",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/NotificationDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/demandeCheque": {
+      "post": {
+        "tags": [
+          "demandeCheque"
+        ],
+        "summary": "Save demande cheque",
+        "description": "",
+        "operationId": "saveDemandeCheque",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "demandeChequeDTO needed",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DemandeChequeDTO"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          },
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/demandeCheque/{customerId}": {
+      "get": {
+        "tags": [
+          "demandeCheque"
+        ],
+        "operationId": "getDemandeChequeCustomer",
+        "summary": "List demande cheque of a customer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerId",
+            "required": true,
+            "description": "Customer code",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/beneficiairy": {
+      "post": {
+        "tags": [
+          "beneficiary"
+        ],
+        "operationId": "createBeneficiary",
+        "summary": "Create beneficiary",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BeneficiaireDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "beneficiary"
+        ],
+        "operationId": "getBeneciaries",
+        "summary": "List beneficiaries",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BeneficiaireDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "beneficiary"
+        ],
+        "operationId": "updateBeneficiary",
+        "summary": "Update beneficiary",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BeneficiaireDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "beneficiary"
+        ],
+        "operationId": "deleteBeneficiary",
+        "summary": "Delete beneficiary",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BeneficiaireDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/listBranches/{town}": {
+      "get": {
+        "tags": [
+          "localization"
+        ],
+        "operationId": "listBranches",
+        "summary": "Return all branches in a town",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "town",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponseDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/listATMs/{town}": {
+      "get": {
+        "tags": [
+          "localization"
+        ],
+        "operationId": "listATMs",
+        "summary": "Return all ATMs in a town",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "town",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponseDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/listTown": {
+      "get": {
+        "tags": [
+          "localization"
+        ],
+        "operationId": "list",
+        "summary": "Return all towns",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/otp/generate": {
+      "post": {
+        "tags": [
+          "otp"
+        ],
+        "operationId": "generateOTP",
+        "summary": "Generate OTP",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/otp/validate": {
+      "post": {
+        "tags": [
+          "otp"
+        ],
+        "operationId": "validateOTP",
+        "summary": "Validate OTP",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/getCustomerAccounts/{customerCode}": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Return all accounts of a customer",
+        "description": "",
+        "operationId": "getCustAccounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerCode",
+            "description": "Code of the customer",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ApiResponseDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/customer/all": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Return all customers",
+        "description": "",
+        "operationId": "getCustomers",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/getCustomerDAT/{customerCode}": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Return all DAT of a customer",
+        "description": "",
+        "operationId": "getCustDAT",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerCode",
+            "description": "Code of the customer",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DatDTO"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/customerCashVousher/{customerCode}": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Return all Cash Vousher of a customer",
+        "description": "",
+        "operationId": "getCustVousher",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerCode",
+            "description": "Code of the customer",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CashVousherDTO"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/loan/customerLoan /{customerCode}": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Return all loans of a customer",
+        "description": "",
+        "operationId": "getCustLoans",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerCode",
+            "description": "Code of the customer",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LoanDTO"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/createClaim/{customerCode}/{claim}": {
+      "get": {
+        "tags": [
+          "others"
+        ],
+        "summary": "Return all Cash Vousher of a customer",
+        "description": "",
+        "operationId": "createClaim",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerCode",
+            "description": "Code of the customer",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "claim",
+            "description": "Claim of the customer",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ApiResponseDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/getTelcos": {
+      "get": {
+        "tags": [
+          "others"
+        ],
+        "summary": "Return all telcos",
+        "description": "",
+        "operationId": "getTelcos",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/getFaqs/{language}": {
+      "get": {
+        "tags": [
+          "others"
+        ],
+        "summary": "Return all Cash Vousher of a customer",
+        "description": "",
+        "operationId": "getFaqs",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "language",
+            "description": "Language of faqs",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FaqDTO"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/api/user/me": {
+      "get": {
+        "tags": [
+          "others"
+        ],
+        "summary": "Return current user informations",
+        "description": "",
+        "operationId": "userInfo",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/deployInfos": {
+      "get": {
+        "tags": [
+          "others"
+        ],
+        "summary": "Return deployment informations",
+        "description": "",
+        "operationId": "deployInfos",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DeployInfosDTO"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid",
+      "headers": {
+        "WWW_Authenticate": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "JWT Authentication",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "ApiResponseDTO": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "failure": {
+          "type": "boolean"
+        },
+        "nbPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "returnMsg": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "returnValue": {
+          "type": "object"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "trxId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "ApiResponseDTO"
+      }
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "addressLine": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "postCode": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Address"
+      }
+    },
+    "BeneficiaireDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "accountNo": {
+          "type": "string"
+        },
+        "codeBanque": {
+          "type": "string"
+        },
+        "codeGuichet": {
+          "type": "string"
+        },
+        "devCpte": {
+          "type": "string"
+        },
+        "interBank": {
+          "type": "string",
+          "enum": [
+            "oui",
+            "non"
+          ]
+        },
+        "montantDevOpe": {
+          "type": "number"
+        },
+        "nom": {
+          "type": "string"
+        },
+        "ribCompte": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Beneficiaire"
+      }
+    },
+    "CashVousherDTO": {
+      "type": "object",
+      "properties": {
+        "amt": {
+          "type": "number"
+        },
+        "benef": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string"
+        },
+        "cvNo": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "failure": {
+          "type": "boolean"
+        },
+        "interest": {
+          "type": "number"
+        },
+        "interestPaid": {
+          "type": "number"
+        },
+        "nbPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "returnMsg": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "returnValue": {
+          "type": "object"
+        },
+        "sessiongId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "trxId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "CashVousherDTO"
+      }
+    },
+    "CustomerDTO": {
+      "type": "object",
+      "properties": {
+        "accountNonExpired": {
+          "type": "boolean"
+        },
+        "accountNonLocked": {
+          "type": "boolean"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "authorities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GrantedAuthority"
+          }
+        },
+        "credentialsNonExpired": {
+          "type": "boolean"
+        },
+        "customerCode": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deviceMetadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeviceMetadata"
+          }
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Event"
+          }
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastLogin": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Role"
+          }
+        },
+        "temporary": {
+          "type": "boolean"
+        },
+        "username": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "xml": {
+        "name": "CustomerDTO"
+      }
+    },
+    "DatDTO": {
+      "type": "object",
+      "properties": {
+        "accNo": {
+          "type": "string"
+        },
+        "amt": {
+          "type": "number"
+        },
+        "context": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "datNo": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "failure": {
+          "type": "boolean"
+        },
+        "interest": {
+          "type": "number"
+        },
+        "interestPaid": {
+          "type": "number"
+        },
+        "nbPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rate": {
+          "type": "number"
+        },
+        "returnMsg": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "returnValue": {
+          "type": "object"
+        },
+        "status": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "trxId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "DatDTO"
+      }
+    },
+    "DemandeChequeDTO": {
+      "type": "object",
+      "properties": {
+        "chequeType": {
+          "type": "string"
+        },
+        "customerAccountNo": {
+          "type": "string"
+        },
+        "nbBook": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nbLeaf": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "xml": {
+        "name": "DemandeChequeDTO"
+      }
+    },
+    "DeployInfosDTO": {
+      "type": "object",
+      "properties": {
+        "nom": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "DeviceMetadataDTO": {
+      "type": "object",
+      "properties": {
+        "deviceDetails": {
+          "type": "string"
+        },
+        "imei": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "location": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "DeviceMetadataDTO"
+      }
+    },
+    "DeviceMetadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "deviceDetails": {
+          "type": "string"
+        },
+        "imei": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastLoggedIn": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "location": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "DeviceMetadata"
+      }
+    },
+    "DigibankTransactionDTO": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateJr": {
+          "type": "string",
+          "format": "date-format"
+        },
+        "jourAnnulationTransaction": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "montantCommissions": {
+          "type": "number"
+        },
+        "montantOperation": {
+          "type": "number"
+        },
+        "montantTax": {
+          "type": "number"
+        },
+        "motifTransaction": {
+          "type": "string"
+        },
+        "senderName": {
+          "type": "string"
+        },
+        "wallet": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "DigibankTransactionDTO"
+      }
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "agentCode": {
+          "type": "string"
+        },
+        "benefAccountNo": {
+          "type": "string"
+        },
+        "benefCurrency": {
+          "type": "string"
+        },
+        "benefName": {
+          "type": "string"
+        },
+        "dateDebut": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateFin": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateJr": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "etat": {
+          "type": "string",
+          "enum": [
+            "Echec",
+            "Valider",
+            "Annuler",
+            "EnAttenteOTP",
+            "Nouveau",
+            "Succes"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "montantOperation": {
+          "type": "number"
+        },
+        "motif": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "otpvalue": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "periodicite": {
+          "type": "string",
+          "enum": [
+            "Jour",
+            "Mois",
+            "Annee"
+          ]
+        },
+        "senderAccountNo": {
+          "type": "string"
+        },
+        "senderCurrency": {
+          "type": "string"
+        },
+        "senderName": {
+          "type": "string"
+        },
+        "senderPhoneNumber": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "VIRCPTECPTE",
+            "VIRSIMPLE",
+            "VIRPERMANENT",
+            "VIRMULT",
+            "VIRINTERBANK",
+            "TOPUP"
+          ]
+        }
+      },
+      "xml": {
+        "name": "Event"
+      }
+    },
+    "FaqDTO": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "failure": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "langue": {
+          "type": "string"
+        },
+        "nbPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "question": {
+          "type": "string"
+        },
+        "reponse": {
+          "type": "string"
+        },
+        "returnMsg": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "array",
+          "items": {}
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "trxId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "FaqDTO"
+      }
+    },
+    "GrantedAuthority": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "GrantedAuthority"
+      }
+    },
+    "HistoricDTO": {
+      "type": "object",
+      "properties": {
+        "accNo": {
+          "type": "string"
+        },
+        "amt": {
+          "type": "number",
+          "format": "double"
+        },
+        "context": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "failure": {
+          "type": "boolean"
+        },
+        "nbPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ope": {
+          "type": "string"
+        },
+        "returnMsg": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "returnValue": {
+          "type": "object"
+        },
+        "sens": {
+          "type": "string"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string"
+        },
+        "tranDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "trxId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "HistoricDTO"
+      }
+    },
+    "LoanDTO": {
+      "type": "object",
+      "properties": {
+        "amt": {
+          "type": "number",
+          "format": "double"
+        },
+        "context": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "failure": {
+          "type": "boolean"
+        },
+        "loanNo": {
+          "type": "string"
+        },
+        "nbPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nextInstallDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "outstanding": {
+          "type": "number"
+        },
+        "penalty": {
+          "type": "number"
+        },
+        "rate": {
+          "type": "number"
+        },
+        "remaining": {
+          "type": "number"
+        },
+        "returnMsg": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "returnValue": {
+          "type": "object"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "trxId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "LoanDTO"
+      }
+    },
+    "LoginAgentDTO": {
+      "type": "object",
+      "properties": {
+        "agentCode": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "LoginAgentDTO"
+      }
+    },
+    "LoginDTO": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "otp": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deviceMetadata": {
+          "$ref": "#/definitions/DeviceMetadataDTO"
+        }
+      },
+      "xml": {
+        "name": "LoginDTO"
+      }
+    },
+    "NewDeviceDTO": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "deviceMetadata": {
+          "$ref": "#/definitions/DeviceMetadataDTO"
+        }
+      }
+    },
+    "NotificationDTO": {
+      "type": "object",
+      "properties": {
+        "beneficiaire": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string"
+        },
+        "dateJr": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "etat": {
+          "type": "string"
+        },
+        "failure": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "nbPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "returnMsg": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "returnValue": {
+          "type": "object"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "trxId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "NotificationDTO"
+      }
+    },
+    "Privilege": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "roles": {
+          "$ref": "#/definitions/Role"
+        }
+      },
+      "xml": {
+        "name": "Privilege"
+      }
+    },
+    "RegisterAgentDTO": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "agentCode": {
+          "type": "string"
+        },
+        "agentName": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "suspended": {
+          "type": "boolean"
+        }
+      },
+      "xml": {
+        "name": "RegisterAgentDTO"
+      }
+    },
+    "RegisterDTO": {
+      "type": "object",
+      "properties": {
+        "customerCode": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "RegisterDTO"
+      }
+    },
+    "ResponseLoginAgentDTO": {
+      "type": "object",
+      "properties": {
+        "customer": {
+          "$ref": "#/definitions/CustomerDTO"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "ResponseLoginAgentDTO"
+      }
+    },
+    "ResponseLoginDTO": {
+      "type": "object",
+      "properties": {
+        "newDevice": {
+          "type": "boolean"
+        },
+        "token": {
+          "type": "string"
+        },
+        "userDTO": {
+          "$ref": "#/definitions/UserDTO"
+        }
+      },
+      "xml": {
+        "name": "ResponseLoginDTO"
+      }
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "ADMIN",
+            "AGENT",
+            "CUSTOMER",
+            "USER"
+          ]
+        },
+        "privileges": {
+          "type": "array",
+          "items": {}
+        },
+        "roleName": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Role"
+      }
+    },
+    "StatementDTO": {
+      "type": "object",
+      "properties": {
+        "accNo": {
+          "type": "string"
+        },
+        "amt": {
+          "type": "number",
+          "format": "double"
+        },
+        "context": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "failure": {
+          "type": "boolean"
+        },
+        "nbPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ope": {
+          "type": "string"
+        },
+        "returnMsg": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "returnValue": {
+          "type": "object"
+        },
+        "sens": {
+          "type": "string"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tranDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "trxId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "StatementDTO"
+      }
+    },
+    "TransactionDTO": {
+      "type": "object",
+      "properties": {
+        "benefAccountNo": {
+          "type": "string"
+        },
+        "benefCurrency": {
+          "type": "string"
+        },
+        "benefName": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "dateDebut": {
+          "type": "string",
+          "format": "date"
+        },
+        "dateFin": {
+          "type": "string",
+          "format": "date"
+        },
+        "dateJr": {
+          "type": "string",
+          "format": "date"
+        },
+        "etat": {
+          "type": "string",
+          "enum": [
+            "Echec",
+            "Valider",
+            "Annuler",
+            "EnAttenteOTP",
+            "Nouveau",
+            "Succes"
+          ]
+        },
+        "montantOperation": {
+          "type": "number"
+        },
+        "motif": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "periodicite": {
+          "type": "string",
+          "enum": [
+            "Jour",
+            "Mois",
+            "Annee"
+          ]
+        },
+        "senderAccountNo": {
+          "type": "string"
+        },
+        "senderCurrency": {
+          "type": "string"
+        },
+        "senderName": {
+          "type": "string"
+        },
+        "senderPhoneNumber": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "VIRCPTECPTE",
+            "VIRSIMPLE",
+            "VIRPERMANENT",
+            "VIRMULT",
+            "VIRINTERBANK",
+            "TOPUP"
+          ]
+        }
+      },
+      "xml": {
+        "name": "TransactionDTO"
+      }
+    },
+    "UpdatePINDTO": {
+      "type": "object",
+      "properties": {
+        "newPin": {
+          "type": "string"
+        },
+        "tempPin": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "UpdatePINDTO"
+      }
+    },
+    "UserDTO": {
+      "type": "object",
+      "properties": {
+        "customerCode": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastLogin": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
