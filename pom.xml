@@ -108,6 +108,8 @@
 		<module>app-config</module>
 		<module>user-jpa</module>
 		<module>user-service</module>
+        <module>security_v2</module>
+		<module>security_v1</module>
 	</modules>
 	<build>
 		<plugins>

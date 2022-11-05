@@ -18,11 +18,24 @@ public class Customer implements UserDetails, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private Long id;
+
 	private String username;
 	private String password;
+	private String email;
+
 	private List<Role> roles = new ArrayList<>();
 	private LocalDate passwordExpired;
 	private boolean isVerify;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;
@@ -54,6 +67,14 @@ public class Customer implements UserDetails, Serializable {
 
 	public void setVerify(boolean isVerify) {
 		this.isVerify = isVerify;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
